@@ -1,0 +1,11 @@
+{
+  "name": "game-of-life_VR-WS",
+  "version": "1.0.0",
+  "main": "game.js",
+  "repository": "https://github.com/rivermanvr/game-of-life_VR-WS.git",
+  "author": "rivermanvr <vrgithub@riversconsulting.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
