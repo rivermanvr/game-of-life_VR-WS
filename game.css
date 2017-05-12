@@ -11,8 +11,8 @@ h1, h2 {
 
 #board td{
   border: 1px solid #ddd;
-  width: 18px;
-  height: 18px;
+  width: 7px;
+  height: 7px;
 }
 
 td.alive {

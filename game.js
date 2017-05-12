@@ -1,7 +1,7 @@
 var gameOfLife = {
   
-  width: 12, 
-  height: 12, // width and height dimensions of the board
+  width: 50, 
+  height: 50, // width and height dimensions of the board
   stepInterval: null, // should be used to hold reference to an interval that is "playing" the game
 
   createAndShowBoard: function () {
