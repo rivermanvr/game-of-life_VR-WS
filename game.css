@@ -24,6 +24,29 @@ td.dead {
 }
 
 #control_panel {
-  margin: 10px auto;
   text-align: center;
+}
+
+#control_panel_main {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.control_panel_note {
+  margin: 15px;
+  text-align: center;
+}
+
+#control_panel_settings {
+  text-align: center;
+}
+
+.disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.6;
+}
+
+.hidden {
+  opacity: 0;
 }

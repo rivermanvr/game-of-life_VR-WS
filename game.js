@@ -1,29 +1,28 @@
 var gameOfLife = {
-  
-  width: 12, 
-  height: 12, // width and height dimensions of the board
-  stepInterval: null, // should be used to hold reference to an interval that is "playing" the game
+
+  width: document.getElementById('settings_columns').value,
+  height: document.getElementById('settings_rows').value, // width and height dimensions of the board
+  stepInterval: 100, // should be used to hold reference to an interval that is "playing" the game
 
   createAndShowBoard: function () {
-    
     // create <table> element
-    var goltable = document.createElement("tbody");
-    
+    var goltable = document.createElement('tbody');
+
     // build Table HTML
     var tablehtml = '';
-    for (var h=0; h<this.height; h++) {
+    for (var h = 0; h < this.height; h++) {
       tablehtml += "<tr id='row+" + h + "'>";
-      for (var w=0; w<this.width; w++) {
+      for (var w = 0; w < this.width; w++) {
         tablehtml += "<td data-status='dead' id='" + w + "-" + h + "'></td>";
       }
       tablehtml += "</tr>";
     }
     goltable.innerHTML = tablehtml;
-    
+
     // add table to the #board element
     var board = document.getElementById('board');
     board.appendChild(goltable);
-    
+
     // once html elements are added to the page, attach events to them
     this.setupBoardEvents();
   },
@@ -66,9 +65,15 @@ var gameOfLife = {
       }
       
     };
+
+
     
     var cell00 = document.getElementById('0-0');
     cell00.addEventListener('click', onCellClick);
+  },
+
+  cellStatus: function(cell) {
+
   },
 
   step: function () {

@@ -11,12 +11,33 @@
 <body>
   <h2>Game of Life</h2>
   <table id='board'></table>
-  
+
   <div id='control_panel'>
-    <button id='step_btn' class='btn btn-success'>Step</button>
-    <button id='play_btn' class='btn btn-primary'>Play</button>
-    <button id='reset_btn' class='btn btn-warning'>Reset Random</button>
-    <button id='clear_btn' class='btn btn-info'>Clear</button>
+    <div id='control_panel_main'>
+      <button id='step_btn' class='btn btn-success'>Step</button>
+      <button id='play_btn' class='btn btn-primary'>Play</button>
+      <button id='reset_btn' class='btn btn-warning'>Reset Random</button>
+      <button id='clear_btn' class='btn btn-info'>Clear</button>
+    </div>
+    <div id='control_panel_input' class='hidden disabled'>
+      <div class='control_panel_note'>Note: Clear Grid before changing settings: </div>
+      <label for="settings_rows">Rows: </label>
+      <input id='settings_rows' style='width: 50px;' value ='50'  />
+      <label for="settings_columns">Columns: </label>
+      <input id='settings_columns' style='width: 50px;' value ='50' />
+      <label for="settings_cell">Cell Size: </label>
+      <input id='settings_cell' style='width: 50px;' value ='7' />
+      <div class='control_panel_note'>
+        <label> Select Organism to manually setup: </label>
+        <select>
+          <option value='1'>Blue</option>
+          <option value='2'>Red</option>
+        </select>
+      </div>
+    </div>
+    <div id='control_panel_settings'>
+      <button id='settings_btn' class='btn btn-default'>Change Settings & Manual Board Setup</button>
+    </div>
   </div>
   
   <br><br>
