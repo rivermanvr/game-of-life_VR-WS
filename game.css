@@ -11,16 +11,20 @@ h1, h2 {
 
 #board td{
   border: 1px solid #ddd;
-  width: 7px;
-  height: 7px;
-}
-
-td.alive {
-  background-color: #8CC8DD;
+  width: 8px;
+  height: 8px;
 }
 
 td.dead {
   background-color: #fff;
+}
+
+td.red {
+  background-color: red;
+}
+
+td.blue {
+  background-color: blue;
 }
 
 #control_panel {
@@ -33,12 +37,20 @@ td.dead {
 }
 
 .control_panel_note {
-  margin: 15px;
+  margin: 7px;
   text-align: center;
 }
 
 #control_panel_settings {
   text-align: center;
+}
+
+#settings_interval {
+  margin: 15px;
+}
+
+#game_over {
+  margin: 20px auto;
 }
 
 .disabled {
