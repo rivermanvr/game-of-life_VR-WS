@@ -14,16 +14,18 @@
 
   <div id='control_panel'>
     <div id='control_panel_main'>
-      <button id='step_btn' class='btn btn-success' onclick="gameOfLife.step()">Step</button>
-      <button id='play_btn' class='btn btn-success' onclick="gameOfLife.enableAutoPlay('play')">Play</button>
-      <button id='pause_btn' class='btn btn-info' onclick="gameOfLife.enableAutoPlay()">Pause</button>
-      <button id='reset_btn' class='btn btn-danger' onclick="gameOfLife.reset()">Reset Random</button>
-      <button id='clear_btn' class='btn btn-danger' onclick="gameOfLife.clear()">Clear</button>
+      <button id='step_btn' class='btn btn-success'>Step</button>
+      <button id='autoplay_btn' class='btn btn-success'>AutoPlay</button>
+      <button id='pause_btn' class='btn btn-info'>Pause</button>
+    </div>
+    <div id='control_panel_newgame'>
+      <button id='random_btn' class='btn btn-default'>New Random Game</button>
+      <button id='new_game_btn' class='btn btn-default'>New Game</button>
     </div>
     <div id='control_panel_input' class='hidden disabled'>
       <div class='control_panel_note'>Note: Clear Grid before changing settings: </div>
       <label for="settings_rows">Rows: </label>
-      <input id='settings_rows' style='width: 50px;' value ='7'  />
+      <input id='settings_rows' style='width: 50px;' value ='10'  />
       <label for="settings_columns">Columns: </label>
       <input id='settings_columns' style='width: 50px;' value ='10' />
       <label for="settings_cell">Cell Size: </label>
@@ -41,13 +43,13 @@
       </div>
     </div>
     <div id='game_over' class='hidden disabled'>
-      <strong>The Game is over</strong>
+      <strong>This Game is over</strong>
     </div>
     <div id='control_panel_settings_default'>
-      <button id='settings_btn' class='btn btn-default' onclick="gameOfLife.advanced('default')">Advanced Board Setup</button>
+      <button id='advanced_default_btn' class='btn btn-default'>Advanced Board Setup</button>
     </div>
     <div id='control_panel_settings_chg' class='hidden disabled'>
-      <button id='settings_btn' class='btn btn-default' onclick="gameOfLife.advanced()">Accept Settings</button>
+      <button id='advanced_settings_btn' class='btn btn-default'>Accept Settings</button>
     </div>
   </div>
   <br><br>
