@@ -25,9 +25,9 @@
     <div id='control_panel_input' class='hidden disabled'>
       <div class='control_panel_note'>Note: Clear Grid before changing settings: </div>
       <label for="settings_rows">Rows: </label>
-      <input id='settings_rows' style='width: 50px;' value ='10'  />
+      <input id='settings_rows' style='width: 50px;' value ='4'  />
       <label for="settings_columns">Columns: </label>
-      <input id='settings_columns' style='width: 50px;' value ='10' />
+      <input id='settings_columns' style='width: 50px;' value ='4' />
       <label for="settings_cell">Cell Size: </label>
       <input id='settings_cell' style='width: 50px;' value ='7' />
       <div>
@@ -36,13 +36,14 @@
       </div>
       <div class='control_panel_note'>
         <label> Select Organism to manually setup: </label>
-        <select>
-          <option value='1'>Blue</option>
+        <select id="selectColor">
+          <option value='1' selected>Blue</option>
           <option value='2'>Red</option>
         </select>
       </div>
     </div>
     <div id='game_over' class='hidden disabled'>
+      <strong>Stable, Unchanging or empty configuration</strong><br /><br />
       <strong>This Game is over</strong>
     </div>
     <div id='control_panel_settings_default'>
