@@ -67,3 +67,7 @@ td.blue {
 .hidden {
   opacity: 0;
 }
+
+.dim {
+  opacity:0.2;
+}

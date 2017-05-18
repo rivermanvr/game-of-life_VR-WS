@@ -1,11 +1,13 @@
 const gameOfLife = {
+  stepInterval: null,
+  autoPlaying: false,
+
   resetState: function() {
     this.stateObj = {blueColor: {}, redColor: {}, gameCount: 0,
       rows: (document.getElementById('settings_rows').value) * 1,
       columns: (document.getElementById('settings_columns').value) * 1,
       colorId: 1,
-      stepInterval: (document.getElementById('settings_interval').value) * 1,
-      intervalId: null
+      timeMS: (document.getElementById('settings_interval').value) * 1,
     }
   },
 
@@ -18,7 +20,6 @@ const gameOfLife = {
   },
 
   buildTable: function() {
-    console.log('game setup');
     let goltable = document.createElement('tbody');
     // build Table HTML
     let tablehtml = '';
@@ -33,7 +34,14 @@ const gameOfLife = {
     return goltable;
   },
 
-  createAndShowBoard: function () {
+  createAndShowBoard: function(adv) {
+    console.log('..create the game board');
+    if (adv === 'adv') {
+      let element = document.getElementsByTagName('tbody');
+      for (let i = 0; i < element.length; i++) {
+        element[i].parentNode.removeChild(element[i]);
+      }
+    }
     this.resetState();
     let board = document.getElementById('board');
     board.appendChild(this.buildTable());
@@ -44,25 +52,30 @@ const gameOfLife = {
     this.processTable(function(cell) {
       cell.addEventListener('click', this.cellStatus)
     });
-    // -------------------------------------------------
-    //document.getElementById('step_btn').onclick = this.step.bind(this);
-    document.getElementById('step_btn').addEventListener('click', this.step.bind(this));
-    // -------------------------------------------------
-    document.getElementById('autoplay_btn').onclick = this.enableAutoPlay.bind(this);
-    document.getElementById('pause_btn').onclick = this.pause.bind(this);
-    document.getElementById('random_btn').onclick = this.createRandom.bind(this);
-    document.getElementById('new_game_btn').onclick = this.newGame.bind(this);              //tested <--
+
+    document.getElementById('step_btn').onclick = this.step.bind(this);
+    document.getElementById('random_btn1').onclick = this.createRandom.bind(this);
+    document.getElementById('random_btn2').onclick = this.createRandom2.bind(this);
+    document.getElementById('new_game_btn').onclick = this.newGame.bind(this);
     document.getElementById('advanced_default_btn').onclick = this.advancedDef.bind(this);
     document.getElementById('selectColor').onchange = this.selectColor.bind(this);
     document.getElementById('advanced_settings_btn').onclick = this.advSettings.bind(this);
-  },
-
-  createRandom: function() {
-    this.newGame();
-    this.processTable(function(cell){
-      this.setStatus(cell, Math.round(Math.random()) ? 'dead' : 'alive', Math.round(Math.random()) ? 'blue' : 'red');
+    let game = this;
+    document.getElementById('autoplay_btn').addEventListener('click', function() {
+      if (game.stepInterval) {
+        console.log('..pause AutoPlay');
+        this.innerHTML = 'Auto Play Game';
+        game.autoPlaying = false;
+        window.clearInterval(game.stepInterval);
+        game.stepInterval = 0;
+        game.resetState();
+      } else {
+        console.log('..AutoPlay');
+        this.innerHTML = 'Pause Auto Play';
+        game.autoPlaying = true;
+        game.stepInterval = window.setInterval(game.step.bind(game), game.stateObj.timeMS);
+      }
     });
-    this.resetState();
   },
 
   newGame: function() {
@@ -73,6 +86,19 @@ const gameOfLife = {
       if ( cell.getAttribute('data-status') === 'alive') this.setStatus(cell, 'dead', 'dead');
     });
     this.resetState();
+  },
+
+  createRandom: function(gamePick = 1) {
+    console.log('random game');
+    this.processTable(function(cell){
+      if (gamePick === 2) this.setStatus(cell, Math.round(Math.random()) ? 'dead' : 'alive', Math.round(Math.random()) ? 'blue' : 'red');
+      else this.setStatus(cell, Math.round(Math.random()) ? 'dead' : 'alive', 'blue');
+  });
+    this.resetState();
+  },
+
+  createRandom2: function() {
+    this.createRandom(2);
   },
 
   cellStatus: function() {
@@ -89,12 +115,14 @@ const gameOfLife = {
   },
 
   step: function () {
+    let absBtn = document.getElementById('control_panel_settings_default');
+    absBtn.className = (this.autoPlaying) ? 'dim' : '';
+    console.log(absBtn);
     this.processTable(this.countNeighbors);
     this.processTable(this.processNewState);
     if (!this.stateObj.gameCount) {
       let game = document.getElementById('game_over');
       game.className = '';
-      this.pause();
     }
     this.resetState();
   },
@@ -127,7 +155,6 @@ const gameOfLife = {
       countTotal: 0
     };
     NewStateObj.countTotal = NewStateObj.countRed + NewStateObj.countBlue;
-
     if (cell.dataset.status === 'alive') {
       this.aliveNewState(cell, NewStateObj);
     } else {
@@ -160,17 +187,6 @@ const gameOfLife = {
     }
   },
 
-  enableAutoPlay: function () {
-    console.log('..AutoPlay');
-    this.stateObj.intervalId = window.setInterval(this.step.bind(this), this.stateObj.stepInterval);
-  },
-
-  pause: function() {
-    console.log('..pause AutoPlay');
-    window.clearInterval(this.stateObj.intervalId);
-    this.resetState();
-  },
-
   advancedDef: function(){
       let advSettings = document.getElementById('control_panel_input');
       advSettings.className = '';
@@ -188,6 +204,11 @@ const gameOfLife = {
   },
 
   advSettings: function() {
+    this.hideAdvSettings();
+    this.createAndShowBoard('adv');
+  },
+
+  hideAdvSettings: function() {
     let advSettings = document.getElementById('control_panel_input');
     advSettings.className = 'hidden disabled';
     let advBtn = document.getElementById('control_panel_settings_default');

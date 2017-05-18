@@ -15,31 +15,29 @@
   <div id='control_panel'>
     <div id='control_panel_main'>
       <button id='step_btn' class='btn btn-success'>Step</button>
-      <button id='autoplay_btn' class='btn btn-success'>AutoPlay</button>
-      <button id='pause_btn' class='btn btn-info'>Pause</button>
+      <button id='autoplay_btn' class='btn btn-primary'>Auto Play Game</button>
+      <button id='new_game_btn' class='btn btn-default'>New Game</button>
     </div>
     <div id='control_panel_newgame'>
-      <button id='random_btn' class='btn btn-default'>New Random Game</button>
-      <button id='new_game_btn' class='btn btn-default'>New Game</button>
+      <button id='random_btn1' class='btn btn-default'>1 Color Random</button>
+      <button id='random_btn2' class='btn btn-default'>2 Color Random</button>
+    </div>
+    <div class='control_panel_note'>
+      <label> Select Color for manual entry: </label>
+      <select id="selectColor">
+        <option value='1' selected>Blue</option>
+        <option value='2'>Red</option>
+      </select>
     </div>
     <div id='control_panel_input' class='hidden disabled'>
       <div class='control_panel_note'>Note: Clear Grid before changing settings: </div>
       <label for="settings_rows">Rows: </label>
-      <input id='settings_rows' style='width: 50px;' value ='12'  />
+      <input id='settings_rows' style='width: 50px;' value ='35'  />
       <label for="settings_columns">Columns: </label>
-      <input id='settings_columns' style='width: 50px;' value ='12' />
-      <label for="settings_cell">Cell Size: </label>
-      <input id='settings_cell' style='width: 50px;' value ='7' />
+      <input id='settings_columns' style='width: 50px;' value ='35' />
       <div>
-        <label for="settings_interval">autoPlay interval in ms: </label>
-        <input id='settings_interval' style='width: 50px;' value ='100' />
-      </div>
-      <div class='control_panel_note'>
-        <label> Select Organism to manually setup: </label>
-        <select id="selectColor">
-          <option value='1' selected>Blue</option>
-          <option value='2'>Red</option>
-        </select>
+        <label for="settings_interval">autoPlay interval (ms): </label>
+        <input id='settings_interval' style='width: 50px;' value ='250' />
       </div>
     </div>
     <div id='game_over' class='hidden disabled'>
